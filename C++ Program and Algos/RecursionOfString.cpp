@@ -1,6 +1,9 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
+
+string KeypadArr[10] = {"","./","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
 
 void ReverseString(string s){
     if(s.length()==0)
@@ -74,6 +77,36 @@ void subseq(string s,string ans){
     subseq(ros,ans+ch);
 
 }
+
+void SubSeqAscii(string s,string ans){
+    if(s.length()==0){
+        cout<<ans<<endl;
+        return;
+    }
+    char ch = s[0];
+    int code = ch;
+    string ros = s.substr(1);
+
+    SubSeqAscii(ros,ans);
+    SubSeqAscii(ros,ans+ch);
+    SubSeqAscii(ros,ans+ to_string(code));
+
+}
+
+void Keypad(string s, string ans){
+    if(s.length()==0){
+        cout<<ans<<endl;
+        return;
+    }
+
+    char ch = s[0];
+    string code = KeypadArr[ch-'0'];
+    string ros = s.substr(1);
+
+    for(int i = 0;i<code.length();i++){
+        Keypad(ros,ans+code[i]);
+    }
+}
  
 int main(){
 
@@ -82,7 +115,8 @@ int main(){
     //TowerOfHanoi(3,'A','C','B');
     //cout<<RemoveDup("aaabbbeeeccdd");
     //cout<<ReplaceAll("xpffdxxpdpfxpegpxxpxpfx");
-
-    subseq("ABC","");
+    //subseq("ABC","");
+    //SubSeqAscii("AB","");
+    Keypad("23",""); 
     return 0;
 }
