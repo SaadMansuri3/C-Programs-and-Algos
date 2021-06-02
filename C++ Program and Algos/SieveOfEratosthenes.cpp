@@ -48,8 +48,8 @@ int main(){
     int n;
     n = 30;
 
-    //SieveSpf(n);
-    //PrimeSieve(n);
+    SieveSpf(n);
+    PrimeSieve(n);
 
     return 0;
 }
