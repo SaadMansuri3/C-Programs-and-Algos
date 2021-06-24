@@ -223,26 +223,37 @@ node* MergeTwoLL(node* &head1,node* &head2){
     return dummyNode->next;
 }
 
+void EvenAfterOdd(node* &head){
+    node* odd = head;
+    node* even = head->next;
+    node* EvenStart= even; 
+    while(odd->next!=NULL && even -> next != NULL){
+        odd->next = even->next;
+        odd = odd->next;
+        even->next = odd->next;
+        even = even->next;
+    }
+
+    odd -> next = EvenStart;
+    if(odd->next==NULL){
+        even->next = NULL;
+    }
+}
+
 int main(){
 
     node* head= NULL;
-    node* head2= NULL;
     
     InsertAtTail(head,1);
+    InsertAtTail(head,2);
+    InsertAtTail(head,3);
     InsertAtTail(head,4);
     InsertAtTail(head,5);
-    InsertAtTail(head,7);
-
-    InsertAtTail(head2,2);
-    InsertAtTail(head2,3);
-    InsertAtTail(head2,6);
 
     PrintTheLL(head);
-    PrintTheLL(head2);
 
-    node* newhead = MergeTwoLL(head,head2);
-    PrintTheLL(newhead);
-
+    EvenAfterOdd(head);
+    PrintTheLL(head);
 
     return 0;
 }

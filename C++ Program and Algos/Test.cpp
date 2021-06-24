@@ -1,19 +1,34 @@
-#include<iostream>
+#include <iostream>
+#include <string>
+
 using namespace std;
-int powerr(long long a,long long b){
-    cout<<"IN"<<endl;
-    long long res = 1;
-    while(b>0){
-        if(b%2!=0)
-            res *= a;
-        a=a* (a % 1000000007);
-        b/=2;
+
+int main()
+{
+    int T=0,A=0,D=0;
+    string strr;
+    cin>>T>>strr;
+    int halflen = T/2;
+
+    for(int i=0;i<strr.size();i++){
+        if(strr[i]=='A'){
+            A++;
+            if(A>halflen){
+                cout<<"Anton";
+                break;
+            }
+        }
+        else{
+            D++;
+            if(D>halflen){
+                cout<<"Danik";
+                break;
+            }
+        }
     }
-    return res;
-}
-int main(){
-    int num;
-    scanf("%i",&num);
-    printf("%i",powerr(2,num));
+    if(A==D){
+        cout<<"Friendship";
+    }
+
     return 0;
-} 
+}
